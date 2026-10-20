@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dvq — Data Validator Quick</title>
+<meta name="description" content="Check a CSV for the data problems that break pipelines silently">
+<style>
+:root{--ink:#0b1220;--mut:#5b6b85;--line:#e3e8f0;--acc:#2563eb;--bg:#fbfcfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding:64px 20px 100px}
+.badge{display:inline-block;background:#eff6ff;color:var(--acc);border-radius:999px;padding:5px 14px;font-size:13px;font-weight:700;margin-bottom:20px}
+h1{font-size:40px;letter-spacing:-.02em;margin:0 0 16px;font-weight:800;line-height:1.1}
+@media(max-width:640px){h1{font-size:28px}}
+.lede{color:var(--mut);font-size:19px;margin:0 0 30px}
+pre{background:#0b1220;color:#e2e8f0;padding:16px 18px;border-radius:10px;overflow-x:auto;font-size:14px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;margin:24px 0}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:0 0 16px;font-weight:700}
+ul{padding-left:20px;margin:0;line-height:2;color:#334155}
+.cta{background:var(--ink);color:#fff;border-radius:14px;padding:30px;margin-top:32px}
+.cta h3{margin:0 0 10px;font-size:21px}
+.cta p{color:#cbd5e1;margin:0 0 18px}
+.cta a{display:inline-block;background:#fff;color:var(--ink);text-decoration:none;padding:12px 24px;border-radius:9px;font-weight:700}
+.links{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+.links a{color:var(--acc);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="badge">Python CLI</p>
+<h1>dvq — Data Validator Quick</h1>
+<p class="lede">Check a CSV for the data problems that break pipelines silently</p>
+
+<pre><code>git clone https://github.com/contentforge-press/dvq</code></pre>
+
+<div class="card">
+<h2>What it catches</h2>
+<ul>
+<li><code>2026-02-30</code> in a date column — parses fine, does not exist</li>
+<li><code>"$1,250.00"</code> in a number column — becomes <code>NaN</code>, written as null</li>
+<li>The same key twice (<code>A-001</code> and <code>A-1</code>) — joins duplicate every row</li>
+<li><code>N/A</code> where you expected empty — passes a null check, poisons the join</li>
+<li><code>"A-1001 "</code> trailing space — Merge returns zero rows, no error</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Free vs Pro</h2>
+<ul>
+<li><strong>Free</strong> — all single-table checks, 100 runs/day, 10k rows</li>
+<li><strong>Pro ($49 once)</strong> — cross-table consistency, Slack/email/webhook alerts, 5M rows</li>
+</ul>
+</div>
+
+<div class="cta">
+<h3>Try it free</h3>
+<p>No signup. The free tier is genuinely useful — not a demo.</p>
+<a href="https://contentforge-press.github.io/data-health-check/">Open Data Health Check</a>
+</div>
+
+<div class="links">
+<a href="https://github.com/contentforge-press/datacheck-core">Core library</a> ·
+<a href="https://github.com/contentforge-press/n8n-nodes-datacheck">n8n node</a> ·
+<a href="https://github.com/contentforge-press/dvq">Python CLI</a> ·
+<a href="https://github.com/contentforge-press/datacheck-mcp">MCP server</a>
+</div>
+</div>
+</body>
+</html>
