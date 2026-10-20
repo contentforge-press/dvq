@@ -302,7 +302,7 @@ def validate(
                         reason=reason or "unparseable date",
                         fix="normalize to YYYY-MM-DD, then re-validate",
                     ))
-            elif col.inferred_type in ("number", "money"):
+            elif col.inferred_type in ("number", "money", "mixed"):
                 is_num = bool(re.match(r"^-?\d*\.?\d+$", v))
                 if not is_num:
                     ok_m, _ = parse_money(v)
